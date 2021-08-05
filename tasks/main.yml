@@ -1,0 +1,11 @@
+---
+# tasks file for minecraft_bedrock_ansble_role
+- name: Print all available facts
+  ansible.builtin.debug:
+    var: ansible_facts
+
+- name: Download server package
+  ansible.builtin.unarchive:
+    src: "{{ server_download_url }}"
+    dest: "{{ server_install_path }}"
+    remote_src: yes

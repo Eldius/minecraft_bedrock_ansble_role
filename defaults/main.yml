@@ -1,0 +1,5 @@
+---
+# defaults file for minecraft_bedrock_ansble_role
+server_version: 1.17.10.04
+server_download_url: https://minecraft.azureedge.net/bin-linux/bedrock-server-{{ server_version }}.zip
+server_install_path: /app/minecraft
