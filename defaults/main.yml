@@ -3,3 +3,126 @@
 server_version: 1.17.10.04
 server_download_url: https://minecraft.azureedge.net/bin-linux/bedrock-server-{{ server_version }}.zip
 server_install_path: /app/minecraft
+server_user_name: minecrafter
+server_user_group: minecrafter
+
+## server.properties (infos taken from server.properties in zip file)
+
+# Used as the server name
+# Allowed values: Any string without semicolon symbol.
+server_name: Dedicated Server
+
+# Sets the game mode for new players.
+# Allowed values: "survival", "creative", or "adventure"
+gamemode: survival
+
+# force_gamemode: "false" (or force_gamemode  is not defined in the server.properties)
+# prevents the server from sending to the client gamemode values other
+# than the gamemode value saved by the server during world creation
+# even if those values are set in server.properties after world creation.
+#
+# force_gamemode: "true" forces the server to send to the client gamemode values
+# other than the gamemode value saved by the server during world creation
+# if those values are set in server.properties after world creation.
+force_gamemode: "false"
+
+# Sets the difficulty of the world.
+# Allowed values: "peaceful", "easy", "normal", or "hard"
+difficulty: easy
+
+# If "true" then cheats like commands can be used.
+# Allowed values: ""true"" or ""false""
+allow_cheats: "false"
+
+# The maximum number of players that can play on the server.
+# Allowed values: Any positive integer
+max_players: 10
+
+# If "true" then all connected players must be authenticated to Xbox Live.
+# Clients connecting to remote (non_LAN) servers will always require Xbox Live authentication regardless of this setting.
+# If the server accepts connections from the Internet, then it's highly recommended to enable online_mode.
+# Allowed values: ""true"" or ""false""
+online_mode: "true"
+
+# If "true" then all connected players must be listed in the separate whitelist.json file.
+# Allowed values: ""true"" or ""false""
+white_list: "false"
+
+# Which IPv4 port the server should listen to.
+# Allowed values: Integers in the range [1, 65535]
+server_port: 19132
+
+# Which IPv6 port the server should listen to.
+# Allowed values: Integers in the range [1, 65535]
+server_portv6: 19133
+
+# The maximum allowed view distance in number of chunks.
+# Allowed values: Positive integer equal to 5 or greater.
+view_distance: 32
+
+# The world will be ticked this many chunks away from any player.
+# Allowed values: Integers in the range [4, 12]
+tick_distance: 4
+
+# After a player has idled for this many minutes they will be kicked. If set to 0 then players can idle indefinitely.
+# Allowed values: Any non_negative integer.
+player_idle_timeout: 30
+
+# Maximum number of threads the server will try to use. If set to 0 or removed then it will use as many as possible.
+# Allowed values: Any positive integer.
+max_threads: 8
+
+# Allowed values: Any string without semicolon symbol or symbols illegal for file name: /\n\r\t\f`?*\\<>|\":
+level_name: Bedrock level
+
+# Use to randomize the world
+# Allowed values: Any string
+level_seed:
+
+# Permission level for new players joining for the first time.
+# Allowed values: "visitor", "member", "operator"
+default_player_permission_level: member
+
+# Force clients to use texture packs in the current world
+# Allowed values: ""true"" or ""false""
+texturepack_required: "false"
+
+# Enables logging content errors to a file
+# Allowed values: ""true"" or ""false""
+content_log_file_enabled: "false"
+
+# Determines the smallest size of raw network payload to compress
+# Allowed values: 0_65535
+compression_threshold: 1
+
+# Allowed values: "client_auth", "server_auth", "server_auth_with_rewind"
+# Enables server authoritative movement. If "server_auth", the server will replay local user input on
+# the server and send down corrections when the client's position doesn't match the server's.
+# If "server_auth_with_rewind" is enabled and the server sends a correction, the clients will be instructed
+# to rewind time back to the correction time, apply the correction, then replay all the player's inputs since then. This results in smoother and more frequent corrections.
+# Corrections will only happen if correct_player_movement is set to "true".
+server_authoritative_movement: server_auth
+
+# The number of incongruent time intervals needed before abnormal behavior is reported.
+# Disabled by server_authoritative_movement.
+player_movement_score_threshold: 20
+
+# The difference between server and client positions that needs to be exceeded before abnormal behavior is detected.
+# Disabled by server_authoritative_movement.
+player_movement_distance_threshold: 0.3
+
+# The duration of time the server and client positions can be out of sync (as defined by player_movement_distance_threshold)
+# before the abnormal movement score is incremented. This value is defined in milliseconds.
+# Disabled by server_authoritative_movement.
+player_movement_duration_threshold_in_ms: 500
+
+# If "true", the client position will get corrected to the server position if the movement score exceeds the threshold.
+correct_player_movement: "false"
+
+# If "true", the server will compute block mining operations in sync with the client so it can verify that the client should be able to break blocks when it thinks it can.
+server_authoritative_block_breaking: "false"
+
+# World creation
+# Options: FLAT, LEGACY, DEFAULT
+# Default: DEFAULT
+level_type: DEFAULT

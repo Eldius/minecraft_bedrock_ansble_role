@@ -1,11 +1,63 @@
 ---
 # tasks file for minecraft_bedrock_ansble_role
-- name: Print all available facts
-  ansible.builtin.debug:
-    var: ansible_facts
+- name: Install dependencies
+  ansible.builtin.package:
+    name: unzip
+    state: present
+
+- name: Ensure group app user group exists
+  ansible.builtin.group:
+    name: "{{ server_user_group }}"
+    state: present
+
+- name: Create app user
+  ansible.builtin.user:
+    name: "{{ server_user_name }}"
+    groups: "{{ server_user_group }}"
+    state: present
+    system: yes
+
+- name: Create install folder
+  file:
+    path: "{{ server_install_path }}"
+    state: directory
+    mode: 0766
+    owner: "{{ server_user_name }}"
+    group: "{{ server_user_group }}"
+
+#- name: Print all available facts
+#  ansible.builtin.debug:
+#    var: ansible_facts
 
 - name: Download server package
   ansible.builtin.unarchive:
     src: "{{ server_download_url }}"
     dest: "{{ server_install_path }}"
+    mode: 0766
+    owner: "{{ server_user_name }}"
+    group: "{{ server_user_group }}"
     remote_src: yes
+    creates: "{{ server_install_path }}/bedrock_server"
+
+- name: Render server.properties file
+  ansible.builtin.template:
+    src: server.properties.j2
+    dest: "{{ server_install_path }}/server.properties"
+    mode: 0766
+    owner: "{{ server_user_name }}"
+    group: "{{ server_user_group }}"
+
+- name: Fetch server.properties file
+  ansible.builtin.fetch:
+    src: "{{ server_install_path }}/server.properties"
+    dest: /tmp/fetched
+#
+#- name: List unpacked files
+#  find:
+#    paths: "{{ server_install_path }}"
+#    recurse: no
+#  register: file_list
+#
+#- name: Debug
+#  debug:
+#    msg: "{{ file_list.files }}"

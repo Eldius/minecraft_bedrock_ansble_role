@@ -1,7 +1,8 @@
-role_name: minecraft_bedrock_ansble_role
 galaxy_info:
   author: Eldius
   description: Ansible role to install a Minecraft Bedrock server
+  role_name: minecraft_bedrock_ansble_role
+  namespace: eldius
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
