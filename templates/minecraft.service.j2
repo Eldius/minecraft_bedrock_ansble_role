@@ -1,0 +1,14 @@
+[Unit]
+Description=minecraft
+After=network.target
+
+[Service]
+Environment=LD_LIBRARY_PATH={{ server_install_path }}/
+Type=simple
+User={{ server_user_name }}
+WorkingDirectory={{ server_install_path }}
+ExecStart={{ server_install_path }}/bedrock_server
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

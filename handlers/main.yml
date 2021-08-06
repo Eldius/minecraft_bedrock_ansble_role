@@ -1,2 +1,9 @@
 ---
 # handlers file for minecraft_bedrock_ansble_role
+- name: Restart service
+  become: yes
+  ansible.builtin.service:
+    name: "{{ server_service_name }}"
+    enabled: yes
+    state: started
+    daemon_reload: yes

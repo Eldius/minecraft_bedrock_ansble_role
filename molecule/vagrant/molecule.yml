@@ -1,0 +1,34 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+platforms:
+  - name: instance
+    box: ubuntu/bionic64
+    memory: 2048
+    cpus: 2
+    config_options:
+      ssh.keep_alive: yes
+      ssh.remote_user: "vagrant"
+      synced_folder: true
+      cachier: false
+    #interfaces:
+    #  # `network_name` is the required identifier, all other keys map to
+    #  # arguments.
+    #  - network_name: forwarded_port
+    #    guest: 19132
+    #    host: 19132
+
+provisioner:
+  name: ansible
+  options:
+    vvv: True
+  playbooks:
+    converge: ../resources/converge.yml
+    #create: ../resources/create.yml
+    #destroy: ../resources/destroy.yml
+verifier:
+  name: testinfra
+  additional_files_or_dirs:
+    - ../../resources/tests/*.py

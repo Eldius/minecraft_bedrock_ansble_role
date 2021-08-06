@@ -1,16 +1,28 @@
 ---
 # tasks file for minecraft_bedrock_ansble_role
-- name: Install dependencies
+- name: Debug
+  debug:
+    msg: "{{ ansible_distribution }} {{ ansible_distribution_release }} ({{ ansible_distribution_version }})"
+
+- name: Install dependencies Ubuntu
+  become: yes
   ansible.builtin.package:
-    name: unzip
+    name: "{{ item }}"
     state: present
+    update_cache: yes
+  when: ansible_distribution == 'Ubuntu'
+  loop:
+    - tar
+    - unzip
 
 - name: Ensure group app user group exists
+  become: yes
   ansible.builtin.group:
     name: "{{ server_user_group }}"
     state: present
 
 - name: Create app user
+  become: yes
   ansible.builtin.user:
     name: "{{ server_user_name }}"
     groups: "{{ server_user_group }}"
@@ -18,10 +30,11 @@
     system: yes
 
 - name: Create install folder
+  become: yes
   file:
     path: "{{ server_install_path }}"
     state: directory
-    mode: 0766
+    #mode: 0766
     owner: "{{ server_user_name }}"
     group: "{{ server_user_group }}"
 
@@ -30,26 +43,46 @@
 #    var: ansible_facts
 
 - name: Download server package
+  become: yes
   ansible.builtin.unarchive:
     src: "{{ server_download_url }}"
     dest: "{{ server_install_path }}"
-    mode: 0766
+    #mode: 0766
     owner: "{{ server_user_name }}"
     group: "{{ server_user_group }}"
     remote_src: yes
     creates: "{{ server_install_path }}/bedrock_server"
 
 - name: Render server.properties file
+  become: yes
   ansible.builtin.template:
     src: server.properties.j2
     dest: "{{ server_install_path }}/server.properties"
-    mode: 0766
+    #mode: 0766
     owner: "{{ server_user_name }}"
     group: "{{ server_user_group }}"
 
+- name: Render service definition file
+  become: yes
+  ansible.builtin.template:
+    src: minecraft.service.j2
+    dest: "/etc/systemd/system/{{ server_service_name }}.service"
+    owner: root
+    group: root
+    force: true
+  notify:
+    - Restart service
+
 - name: Fetch server.properties file
+  become: yes
   ansible.builtin.fetch:
     src: "{{ server_install_path }}/server.properties"
+    dest: /tmp/fetched
+
+- name: Fetch service file
+  become: yes
+  ansible.builtin.fetch:
+    src: "/etc/systemd/system/minecraft.service"
     dest: /tmp/fetched
 #
 #- name: List unpacked files

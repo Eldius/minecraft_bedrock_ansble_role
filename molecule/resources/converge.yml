@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include minecraft_bedrock_ansble_role"
+      include_role:
+        name: "minecraft_bedrock_ansble_role"
+      vars:
+        server_name: Test server
+        allow_cheats: "true"
+        debug_mode: true
+        level_name: Test level

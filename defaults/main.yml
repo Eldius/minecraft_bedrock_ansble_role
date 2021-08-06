@@ -1,10 +1,13 @@
 ---
 # defaults file for minecraft_bedrock_ansble_role
+debug_mode: False
+
 server_version: 1.17.10.04
 server_download_url: https://minecraft.azureedge.net/bin-linux/bedrock-server-{{ server_version }}.zip
 server_install_path: /app/minecraft
 server_user_name: minecrafter
 server_user_group: minecrafter
+server_service_name: minecraft
 
 ## server.properties (infos taken from server.properties in zip file)
 
