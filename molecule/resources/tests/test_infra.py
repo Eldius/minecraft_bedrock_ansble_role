@@ -7,23 +7,11 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 ).get_hosts('all')
 
 
-#def test_hosts_file(host):
-#    f = host.file('/etc/hosts')
-#
-#    assert f.exists
-#    assert f.user == 'root'
-#    assert f.group == 'root'
-#
-#
-#def test_unzip_package_is_installe(host):
-#    assert host.package("unzip").is_installed
-
-
 def test_server_user_exists(host):
     u = host.user('minecrafter')
 
     assert u.exists
-    #assert u.group == 'minecrafter'
+    # assert u.group == 'minecrafter'
     assert 'minecrafter' in u.groups
 
 
@@ -33,7 +21,7 @@ def test_server_install_folder_exists(host):
     assert f.exists
     assert f.is_directory
     assert f.user == 'minecrafter'
-    #assert f.mode == 0o766
+    assert f.mode == 0o777
 
 
 def test_server_binary_exists(host):
@@ -41,8 +29,7 @@ def test_server_binary_exists(host):
     assert f.exists
     assert f.is_file
     assert f.user == 'minecrafter'
-    #assert f.mode == 0o766
-
+    assert f.mode == 0o777
 
 
 def test_server_properties_exists(host):
@@ -50,7 +37,7 @@ def test_server_properties_exists(host):
     assert f.exists
     assert f.is_file
     assert f.user == 'minecrafter'
-    #assert f.mode == 0o766
+    assert f.mode == 0o777
 
     content = f.content
 

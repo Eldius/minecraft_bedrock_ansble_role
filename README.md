@@ -40,4 +40,14 @@ An optional section for the role authors to include contact information, or a we
 Reference Links
 ---------------
 
-[BedrockConnect](https://github.com/Pugmatt/BedrockConnect)
+- [BedrockConnect](https://github.com/Pugmatt/BedrockConnect)
+- [ConnorGraham/Minecraft-Nintendo-Switch-Private-Server](https://github.com/ConnorGraham/Minecraft-Nintendo-Switch-Private-Server)
+- [testinfra docs](https://testinfra.readthedocs.io/en/latest/modules.html#addr)
+- [BluCodeGH/bedrock](https://github.com/BluCodeGH/bedrock)
+- [Mojang/leveldb-mcpe](https://github.com/Mojang/leveldb-mcpe)
+- [CloudburstMC/Protocol](https://github.com/CloudburstMC/Protocol)
+- [Pugmatt/BedrockConnect](https://github.com/Pugmatt/BedrockConnect)
+- [barneygale/quarry](https://github.com/barneygale/quarry)
+- [reddit Guide to Minecraft Bedrock Dedicated Server for the Switch](https://www.reddit.com/r/NintendoSwitch/comments/cgzwcl/guide_to_minecraft_bedrock_dedicated_server_for/)
+- [Bedrock Dedicated Server for the Switch](https://www.reddit.com/r/MCPE/comments/a01tq8/bedrock_dedicated_server_for_the_switch/)
+- [How to Setup SimpleAuth - Minecraft Bedrock - Youtube](https://www.youtube.com/watch?v=1lRcpXHBMo8)

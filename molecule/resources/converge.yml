@@ -10,3 +10,4 @@
         allow_cheats: "true"
         debug_mode: true
         level_name: Test level
+        content_log_file_enabled: "true"

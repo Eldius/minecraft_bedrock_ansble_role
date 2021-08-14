@@ -3,16 +3,22 @@ dependency:
   name: galaxy
 driver:
   name: vagrant
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+  flake8
 platforms:
   - name: instance
     box: ubuntu/bionic64
+    # box: ubuntu/focal64
     memory: 2048
     cpus: 2
     config_options:
       ssh.keep_alive: yes
       ssh.remote_user: "vagrant"
       synced_folder: true
-      cachier: false
+      cachier: true
     #interfaces:
     #  # `network_name` is the required identifier, all other keys map to
     #  # arguments.

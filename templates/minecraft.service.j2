@@ -1,5 +1,5 @@
 [Unit]
-Description=minecraft
+Description={{ server_service_name }}
 After=network.target
 
 [Service]
@@ -9,6 +9,9 @@ User={{ server_user_name }}
 WorkingDirectory={{ server_install_path }}
 ExecStart={{ server_install_path }}/bedrock_server
 Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier={{ server_service_name }}
 
 [Install]
 WantedBy=multi-user.target

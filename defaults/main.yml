@@ -98,13 +98,13 @@ content_log_file_enabled: "false"
 # Allowed values: 0_65535
 compression_threshold: 1
 
-# Allowed values: "client_auth", "server_auth", "server_auth_with_rewind"
-# Enables server authoritative movement. If "server_auth", the server will replay local user input on
+# Allowed values: "client_auth", "server-auth", "server-auth-with-rewind"
+# Enables server authoritative movement. If "server-auth", the server will replay local user input on
 # the server and send down corrections when the client's position doesn't match the server's.
-# If "server_auth_with_rewind" is enabled and the server sends a correction, the clients will be instructed
+# If "server-auth-with-rewind" is enabled and the server sends a correction, the clients will be instructed
 # to rewind time back to the correction time, apply the correction, then replay all the player's inputs since then. This results in smoother and more frequent corrections.
-# Corrections will only happen if correct_player_movement is set to "true".
-server_authoritative_movement: server_auth
+# Corrections will only happen if correct-player-movement is set to "true".
+server_authoritative_movement: server-auth
 
 # The number of incongruent time intervals needed before abnormal behavior is reported.
 # Disabled by server_authoritative_movement.
